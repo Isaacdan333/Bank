@@ -2,12 +2,9 @@
 #include <iostream>
 #include <iomanip>
 
-void Bank::createAccount(std::string &name, double deposit) {
-    //accounts.at(0).balance += deposit;
+void Bank::createAccount(std::string &name, double deposit) {;
     number++;
     accounts.emplace_back(name, deposit, number);
-    //this->name = name;
-    //balance += deposit;
 }
 
 bool Bank::checkAccount(int account_num) {

@@ -26,8 +26,6 @@ class Bank{
     private:
     std::vector<Account> accounts;
     int number = -1;
-    //std::string name;
-    //double balance = 0;
 };
 
 

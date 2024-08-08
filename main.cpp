@@ -99,7 +99,14 @@ int main(int argc, char* args[])
                 }
                 if (bank.checkAccount(account_number)) {
                     cout << "Enter amount you want to deposit: ";
-                    cin >> deposit;
+                    cin >> input;
+                    if (isDouble(input)) {
+                        deposit = stod(input);
+                    }
+                    else {
+                        std::cout << "Invalid deposit number.\n";
+                        break;
+                    }
                     if (deposit > 0) {
                         bank.deposit(deposit, account_number);
                         cout << "Deposit was successful. New balance is: " << fixed << setprecision(2) << bank.getBalance(account_number) << endl;
