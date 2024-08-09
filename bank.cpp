@@ -51,7 +51,13 @@ bool Bank::transfer(double amount, int account_num_from, int account_num_to) {
 }
 
 void Bank::ViewAllAccounts() {
+    std::cout << std::setw(20) << std::left << "Name"
+    << std::setw(15) << "Balance" 
+    << std::setw(10) << "Account Number" << std::endl;
     for (auto &account : accounts) {
-        std::cout << "Name: " << account.name << " Balance: " << std::fixed << std::setprecision(2) << account.balance << " Account Number: " << account.account_num << std::endl;
+        std::cout << std::setw(20) << std::left << account.name
+        << std::setw(15) << std::fixed << std::setprecision(2) << account.balance
+        << std::setw(10) << account.account_num << std::endl;
+        //std::cout << "Name: " << account.name << " Balance: " << std::fixed << std::setprecision(2) << account.balance << " Account Number: " << account.account_num << std::endl;
     }
 }

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <iomanip>
 #include <limits>
+#include <sstream>
 #include "bank.h"
 
 using namespace std;
@@ -72,8 +73,13 @@ int main(int argc, char* args[])
                 if (isInteger(input)) {
                     account_number = stoi(input);
                     if (bank.checkAccount(account_number)) {
-                    cout << "Name: " << bank.getAccount_name(account_number) << endl;
-                    cout << "Balance: " << fixed << setprecision(2) << bank.getBalance(account_number) << endl;
+                        std::cout << std::setw(20) << std::left << "Name"
+                        << std::setw(15) << "Balance" 
+                        << std::setw(10) << "Account Number" << std::endl;
+
+                        std::cout << std::setw(20) << std::left << bank.getAccount_name(account_number)
+                        << std::setw(15) << fixed << setprecision(2) << bank.getBalance(account_number) 
+                        << std::setw(10) << bank.getBalance(account_number) << std::endl;
                     }
                     else {
                         cout << "Invalid. Try Again." << endl;
