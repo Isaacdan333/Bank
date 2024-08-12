@@ -209,6 +209,7 @@ int main(int argc, char* args[])
                 break;
             }
             case 6: {
+                bank.saveBankInfo();
                 cout << "Exiting...";
                 break;
             }

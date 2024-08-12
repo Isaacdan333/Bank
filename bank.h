@@ -22,6 +22,8 @@ class Bank{
     bool withdraw(double withdraw, int account_num);
     bool transfer(double amount, int account_num_from, int account_num_to);
     void ViewAllAccounts();
+    int returnAccountNumber();
+    void saveBankInfo();
 
     private:
     std::vector<Account> accounts;

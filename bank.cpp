@@ -1,6 +1,7 @@
 #include "bank.h"
 #include <iostream>
 #include <iomanip>
+#include <fstream>
 
 void Bank::createAccount(std::string &name, double deposit) {;
     number++;
@@ -12,6 +13,10 @@ bool Bank::checkAccount(int account_num) {
         return false;
     }
     return true;
+}
+
+int Bank::returnAccountNumber() {
+    return number;
 }
 
 std::string Bank::getAccount_name(int account_num) {
@@ -60,4 +65,29 @@ void Bank::ViewAllAccounts() {
         << std::setw(10) << account.account_num << std::endl;
         //std::cout << "Name: " << account.name << " Balance: " << std::fixed << std::setprecision(2) << account.balance << " Account Number: " << account.account_num << std::endl;
     }
+}
+
+void Bank::saveBankInfo() {
+    std::string filename = "Accounts.txt";
+    std::ifstream file_check(filename);
+    if (file_check) {
+        std::cout << "Output file already exists.\n";
+    }
+
+    std::ofstream file(filename);
+    if (!file) {
+        std::cerr << "Error with creating file.\n";
+    }
+
+    file << std::left << std::setw(20) << "Name"
+         << std::setw(15) << "Balance"
+         << std::setw(10) << "Account Number\n";
+
+    for (auto &account : accounts) {
+        file << std::setw(20) << std::left << account.name
+        << std::setw(15) << std::fixed << std::setprecision(2) << account.balance
+        << std::setw(10) << account.account_num << std::endl;
+    }
+
+    file.close();
 }
