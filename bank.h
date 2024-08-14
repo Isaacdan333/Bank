@@ -24,6 +24,7 @@ class Bank{
     void ViewAllAccounts();
     int returnAccountNumber();
     void saveBankInfo();
+    void getBankInfo();
 
     private:
     std::vector<Account> accounts;

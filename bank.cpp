@@ -2,6 +2,7 @@
 #include <iostream>
 #include <iomanip>
 #include <fstream>
+#include <sstream>
 
 void Bank::createAccount(std::string &name, double deposit) {;
     number++;
@@ -62,8 +63,7 @@ void Bank::ViewAllAccounts() {
     for (auto &account : accounts) {
         std::cout << std::setw(20) << std::left << account.name
         << std::setw(15) << std::fixed << std::setprecision(2) << account.balance
-        << std::setw(10) << account.account_num << std::endl;
-        //std::cout << "Name: " << account.name << " Balance: " << std::fixed << std::setprecision(2) << account.balance << " Account Number: " << account.account_num << std::endl;
+        << std::setw(10) << account.account_num << std::endl;   
     }
 }
 
@@ -90,4 +90,33 @@ void Bank::saveBankInfo() {
     }
 
     file.close();
+}
+
+void Bank::getBankInfo() {
+    std::string filename = "Accounts.txt";
+    std::string name;
+    double amount;
+    int account_num;
+    std::ifstream file_check(filename);
+    if (file_check) {
+        std::cout << "Getting Bank information...\n\n";
+        // open file for reading
+        std::ifstream infile(filename);
+        if(!infile) {
+            std::cerr << "Error opening the file.\n";
+        }
+
+        std::string line;
+        std::getline(infile, line); // skipping the header line
+        while (std::getline(infile, line)) {
+            std::istringstream iss(line);
+            std::getline(iss, name, ' ');
+            iss >> amount;
+            iss >> account_num;
+            number++;
+            accounts.emplace_back(name, amount, number);
+        }
+
+        infile.close();
+    }
 }

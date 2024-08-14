@@ -35,6 +35,8 @@ int main(int argc, char* args[])
 {
     Bank bank;
     
+    bank.getBankInfo();
+    
     int choice;
     cout << "Welcome to the banking system.\n" << "What would you like to do first?\n";
 
